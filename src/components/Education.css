@@ -1,0 +1,64 @@
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.education-col-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.education-col-title-spaced {
+  margin-top: 28px;
+}
+
+.education-item {
+  padding: 20px;
+  margin-bottom: 14px;
+}
+
+.education-degree {
+  font-size: 15.5px;
+  margin-bottom: 4px;
+}
+
+.education-school {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.education-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.education-detail {
+  font-weight: 700;
+}
+
+.cert-list {
+  padding: 20px 24px;
+}
+
+.cert-list ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+@media (max-width: 760px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,44 @@
+.lane-switcher {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.lane-pill {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.lane-pill:hover {
+  color: var(--text-primary);
+}
+
+.lane-pill-active {
+  background: var(--accent-gradient);
+  color: #ffffff;
+}
+
+.lane-switcher-compact .lane-pill {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .lane-switcher {
+    justify-content: flex-start;
+  }
+}
