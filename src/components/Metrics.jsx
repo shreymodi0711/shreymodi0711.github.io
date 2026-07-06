@@ -1,4 +1,3 @@
-import { lanes } from '../data/lanes';
 import { useCountUp, useInView } from '../hooks/useCountUp';
 import './Metrics.css';
 
@@ -17,19 +16,14 @@ function MetricTile({ metric, isVisible }) {
   );
 }
 
-export default function Metrics({ activeLane }) {
-  const lane = lanes[activeLane];
+export default function Metrics({ metrics }) {
   const [ref, isVisible] = useInView();
 
   return (
-    <section className="section metrics-section">
-      <div className={`container fade-in ${isVisible ? 'is-visible' : ''}`} ref={ref}>
-        <div className="metrics-grid">
-          {lane.metrics.map((metric) => (
-            <MetricTile key={metric.label} metric={metric} isVisible={isVisible} />
-          ))}
-        </div>
-      </div>
-    </section>
+    <div className={`metrics-grid fade-in ${isVisible ? 'is-visible' : ''}`} ref={ref}>
+      {metrics.map((metric) => (
+        <MetricTile key={metric.label} metric={metric} isVisible={isVisible} />
+      ))}
+    </div>
   );
 }

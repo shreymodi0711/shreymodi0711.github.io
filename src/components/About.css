@@ -1,52 +1,177 @@
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 32px;
-  align-items: start;
+.about-section {
+  position: relative;
+  border-bottom: none;
+  padding-top: 0;
+  margin-top: -40px;
 }
 
-.about-summary {
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--text-secondary);
+.about-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  bottom: auto;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
 }
 
-.about-side {
-  padding: 28px;
+.about-story {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.about-side-title {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-.about-side-title:not(:first-child) {
-  margin-top: 20px;
-}
-
-.about-side-value {
-  font-size: 22px;
-  font-weight: 700;
+.about-line {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.6vw, 26px);
+  line-height: 1.5;
   margin-bottom: 4px;
 }
 
-.about-languages {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.about-line-lead {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
-@media (max-width: 760px) {
-  .about-grid {
-    grid-template-columns: 1fr;
+.about-line-strong {
+  font-weight: 700;
+}
+
+.about-line-muted {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.about-why {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.about-story .metrics-grid {
+  margin-bottom: 40px;
+}
+
+.about-testimonial {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 40px;
+  padding: 20px 24px;
+  text-align: left;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-gold);
+}
+
+.about-testimonial-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.about-testimonial-quote {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.about-testimonial-attribution {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.about-testimonial-name {
+  color: var(--text-secondary);
+}
+
+.about-beats {
+  margin-bottom: 40px;
+}
+
+.about-beat {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.6vw, 26px);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+.about-beat-bold {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.about-beat-muted {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.about-beat-highlight {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.about-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.about-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.about-nav-pill:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 50%, var(--border));
+  background: color-mix(in srgb, var(--accent-cyan) 5%, var(--surface));
+}
+
+.about-nav-pill-highlight {
+  background: var(--accent-gradient);
+  color: #0d0e12;
+  border-color: transparent;
+  box-shadow: 0 10px 30px -8px color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+}
+
+.about-nav-pill-highlight:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 14px 36px -8px color-mix(in srgb, var(--accent-cyan) 55%, transparent);
+}
+
+@media (max-width: 640px) {
+  .about-line-muted {
+    margin-bottom: 22px;
+  }
+
+  .about-why {
+    margin-bottom: 28px;
+  }
+
+  .about-beats {
+    margin-bottom: 28px;
   }
 }

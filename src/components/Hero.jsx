@@ -1,45 +1,70 @@
-import { lanes } from '../data/lanes';
+import { Check } from 'lucide-react';
+import { hero } from '../data/narrative';
 import { profile } from '../data/profile';
-import LaneSwitcher from './LaneSwitcher';
+import { useTypewriter } from '../hooks/useTypewriter';
+import profilePhoto from '../assets/profile-photo.jpg';
 import './Hero.css';
 
-export default function Hero({ activeLane, onLaneChange, hasPickedLane }) {
-  const lane = lanes[activeLane];
+export default function Hero() {
+  const [typed, typedDone] = useTypewriter(hero.headlineTyped, {
+    speed: 42,
+    startDelay: 250,
+  });
 
   return (
     <section id="top" className="hero">
+      <div className="hero-glow-wrap" aria-hidden="true">
+        <div className="hero-glow hero-glow-cyan" />
+        <div className="hero-glow hero-glow-purple" />
+      </div>
+
       <div className="container hero-inner">
-        <p className="section-label">{profile.location} · {profile.relocation}</p>
-        <h1 className="hero-name">{profile.name}</h1>
-
-        {hasPickedLane ? (
-          <>
-            <h2 className="hero-headline gradient-text">{lane.headline}</h2>
-            <p className="hero-tagline">{lane.tagline}</p>
-          </>
-        ) : (
-          <>
-            <h2 className="hero-headline gradient-text">Data & AI Professional</h2>
-            <p className="hero-tagline">
-              Business Analysis · Data Analytics · Data Engineering · Data Science · AI/ML
-            </p>
-          </>
-        )}
-
-        <p className="hero-summary">{lane.summary}</p>
-
-        <div className="hero-lane-picker">
-          <p className="hero-lane-prompt">See me through the lens of:</p>
-          <LaneSwitcher activeLane={activeLane} onChange={onLaneChange} />
+        <div className="hero-avatar-wrap">
+          <div className="hero-avatar-glow" />
+          <div className="hero-avatar-frame" />
+          <div className="hero-avatar-ring">
+            <img className="hero-avatar" src={profilePhoto} alt={profile.name} />
+          </div>
+          <span className="hero-avatar-badge" title="Open to work"><Check size={18} strokeWidth={3} /></span>
         </div>
 
-        <div className="hero-actions">
-          <a className="btn btn-primary" href={lane.cvFile} download>
-            Download {lane.fullLabel} CV
-          </a>
-          <a className="btn btn-secondary" href="#contact">
-            Get in touch
-          </a>
+        <div className="hero-text">
+          <p className="hero-greeting">
+            {hero.greeting} <span className="accent-cyan">{profile.name.split(' ')[0]}</span>,
+          </p>
+
+          <h1 className="hero-headline">
+            <span className="gradient-text hero-typewriter">
+              {typed}
+              <span className={`hero-cursor ${typedDone ? 'hero-cursor-done' : ''}`}>|</span>
+            </span>
+            <br />
+            {hero.headlineRest}{' '}
+            <span className="hero-beam">
+              <span className="hero-beam-text">
+                {hero.beamParts.map((part, i) => (
+                  <span key={part}>
+                    {i > 0 && <span className="hero-beam-plus"> + </span>}
+                    {part}
+                  </span>
+                ))}
+              </span>
+            </span>
+          </h1>
+
+          <div className="hero-pills">
+            {hero.credentials.map((cred) => (
+              <span key={cred} className="hero-pill">{cred}</span>
+            ))}
+            <span className="hero-pill hero-pill-highlight">
+              {profile.location} · {profile.relocation}
+            </span>
+          </div>
+
+          <div className="hero-cta-row">
+            <a href="#experience" className="btn btn-primary">View my work</a>
+            <a href="#contact" className="btn btn-secondary">Get in touch</a>
+          </div>
         </div>
       </div>
     </section>

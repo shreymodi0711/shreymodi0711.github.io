@@ -89,6 +89,28 @@ First visit shows a short **generalist hero** — presents Shrey as a versatile 
 
 ## Verification
 
-1. **Local:** `npm install` then `npm run dev`. Verify all 5 lanes switch correctly, lane persists on reload, every section renders real CV content, CV downloads work, mobile viewport has no horizontal scroll, `prefers-reduced-motion` disables animations.
+1. **Local:** `npm install` then `npm run dev`. Verify all 5 lanes switch correctly, lane persists on reload, every section renders real content, mobile viewport has no horizontal scroll, `prefers-reduced-motion` disables animations.
 2. **Build:** `npm run build && npm run preview` — confirm production build works with `base: '/'`.
-3. **Deploy:** push to `main`, watch the Actions run go green, load `https://shreymodi786.github.io` and re-check the lane switcher + CV downloads live.
+3. **Deploy:** push to `main`, watch the Actions run go green, load the live site and re-check the lane switcher.
+
+## Redesign addendum (post-launch)
+
+After the initial dark-gradient build, the site was reworked to match the classy, editorial, flat aesthetic of santifer.io:
+
+- **Removed:** all gradients (`accent-gradient`, `gradient-text`), glowing chip pills, heavy card backgrounds, giant stat tiles, and the entire CV download system (`public/cv/*.pdf`, per-lane `cvFile`, Hero/Contact download buttons). The site itself is the resume now — no downloadable CV.
+- **Added:** a single flat accent color (`--accent: #5b8def`) used sparingly as text/border only, tighter type scale, a `LogoStrip` credibility section (Brock Canada, Red Wireless, Vosyn, Georgian College), a profile photo in the navbar and hero, restyled Experience/Projects as bordered (not filled) sections, and plain flat skill tags instead of gradient pills.
+- **Fixed:** GitHub link corrected to `github.com/shreymodi0711`, LinkedIn corrected to `https://www.linkedin.com/in/shreymodi786/`.
+- **Repo rename:** the GitHub account changed from `Icarus786` to `shreymodi0711`; the Pages repo was renamed from `Icarus786.github.io` to `shreymodi0711.github.io` to keep the root-domain Pages URL working, and the local git remote was updated to match.
+
+## Second redesign: match santifer.io's actual dark/gradient structure
+
+The "flat/light editorial" redesign above was based on a mistaken WebFetch read of santifer.io (WebFetch converts HTML to markdown and loses real rendered styling). A detailed manual reference (`santifer_io_reference.md`, saved to the repo root) confirmed the real site is **dark-themed with cyan/purple/green/orange gradient accents, glowing rounded cards, and a sticky scroll-spy sidebar nav** — closer to the original build than the flat redesign. The site was rebuilt again to match that structure faithfully, adapted to Shrey's actual content (no fabricated stars/forks/testimonials/client logos):
+
+- **Theme:** dark by default (`--bg: #101014`), with a working light/dark toggle (`ThemeToggle` + `useTheme` hook, persisted to localStorage). Gradient accent restored: cyan (`#34d1c8`) → purple (`#9b6bf2`), used on headline text, active lane pill, stat numbers, role titles.
+- **Layout:** Navbar is now minimal (avatar + brand, lane switcher, theme toggle only — no text links). Below the Hero/About, a two-column `.layout` splits into a sticky `SidebarNav` (scroll-spy dot list: Experience/Projects/Education/Skills & Stack/Contact, IntersectionObserver-driven active state) and a content column with the sections in order.
+- **New components:** `SidebarNav.jsx`, `CapabilityGrid.jsx` (6 capability cards inside the Skills section), `ThemeToggle.jsx`, `useTheme.js`.
+- **Hero:** avatar with a green "verified/open to work" badge, gradient two-line headline, location/relocation pill badges, and the lane-metrics stat cards (`Metrics.jsx`, restyled as a 3-up gradient-number card row) folded directly under the summary.
+- **Experience:** timeline cards now have a company-initial logo square and a gradient-colored role title, replacing the flat left-border timeline.
+- **Projects:** cards gained a status pill (top-right) and a monospace tech-stack tag row at the bottom.
+- **Removed:** the flat-theme `LogoStrip` component (superseded by the sidebar/section structure) and the light-only global palette.
+- Confirmed via Playwright screenshots in both dark and light modes, plus a scroll-spy check showing the sidebar's active-section highlight working correctly, and a mobile (375px) check with zero horizontal overflow.

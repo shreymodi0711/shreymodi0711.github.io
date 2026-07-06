@@ -1,22 +1,17 @@
 import { profile } from '../data/profile';
-import LaneSwitcher from './LaneSwitcher';
+import ThemeToggle from './ThemeToggle';
+import profilePhoto from '../assets/profile-photo.jpg';
 import './Navbar.css';
 
-export default function Navbar({ activeLane, onLaneChange }) {
+export default function Navbar({ theme, onToggleTheme }) {
   return (
     <header className="navbar">
       <div className="container navbar-inner">
-        <a href="#top" className="navbar-brand">{profile.name}</a>
-        <nav className="navbar-links">
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div className="navbar-switcher">
-          <LaneSwitcher activeLane={activeLane} onChange={onLaneChange} compact />
-        </div>
+        <a href="#top" className="navbar-brand">
+          <img className="navbar-avatar" src={profilePhoto} alt="" />
+          <span>{profile.name}</span>
+        </a>
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </div>
     </header>
   );

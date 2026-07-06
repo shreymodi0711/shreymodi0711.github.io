@@ -19,8 +19,9 @@ npm run preview
 ## Editing content
 
 - `src/data/profile.js` — shared content: contact info, experience, projects, education, certifications, awards, full skills list.
-- `src/data/lanes.js` — per-lane content: headline, tagline, summary, hero metrics, top skills, CV file path.
-- `public/cv/` — the downloadable CV PDFs, one per lane.
+- `src/data/lanes.js` — per-lane content: headline, tagline, summary, hero metrics, top skills.
+
+The site itself serves as the resume — there are no downloadable CV files.
 
 ## Deployment
 
